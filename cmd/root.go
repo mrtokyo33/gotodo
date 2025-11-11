@@ -3,8 +3,8 @@ package cmd
 import (
 	"os"
 
-	"github.com/mrtokyo33/todo/pkg/repositories"
-	"github.com/mrtokyo33/todo/pkg/services"
+	"github.com/mrtokyo33/gotodo/pkg/repositories"
+	"github.com/mrtokyo33/gotodo/pkg/services"
 	"github.com/spf13/cobra"
 )
 

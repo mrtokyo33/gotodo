@@ -6,8 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/mrtokyo33/todo/pkg/errors"
-	"github.com/mrtokyo33/todo/pkg/models"
+	"github.com/mrtokyo33/gotodo/pkg/errors"
+	"github.com/mrtokyo33/gotodo/pkg/models"
 )
 
 type JSONRepository struct {

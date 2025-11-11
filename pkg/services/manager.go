@@ -1,9 +1,9 @@
 package services
 
 import (
-	"github.com/mrtokyo33/todo/pkg/errors"
-	"github.com/mrtokyo33/todo/pkg/models"
-	"github.com/mrtokyo33/todo/pkg/repositories"
+	"github.com/mrtokyo33/gotodo/pkg/errors"
+	"github.com/mrtokyo33/gotodo/pkg/models"
+	"github.com/mrtokyo33/gotodo/pkg/repositories"
 )
 
 type TaskManager struct {

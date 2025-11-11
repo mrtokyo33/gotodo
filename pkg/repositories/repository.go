@@ -1,6 +1,6 @@
 package repositories
 
-import "github.com/mrtokyo33/todo/pkg/models"
+import "github.com/mrtokyo33/gotodo/pkg/models"
 
 type TaskRepository interface {
 	GetAll() ([]models.Task, error)

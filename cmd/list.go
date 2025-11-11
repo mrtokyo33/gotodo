@@ -3,8 +3,8 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/mrtokyo33/todo/pkg/errors"
-	"github.com/mrtokyo33/todo/pkg/utils"
+	"github.com/mrtokyo33/gotodo/pkg/errors"
+	"github.com/mrtokyo33/gotodo/pkg/utils"
 	"github.com/spf13/cobra"
 )
 

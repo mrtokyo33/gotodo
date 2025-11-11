@@ -3,7 +3,7 @@ package utils
 import (
 	"fmt"
 
-	"github.com/mrtokyo33/todo/pkg/models"
+	"github.com/mrtokyo33/gotodo/pkg/models"
 )
 
 func TaskStatus(completed bool) string {
