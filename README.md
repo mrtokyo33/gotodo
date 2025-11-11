@@ -1,5 +1,7 @@
 # GoTodo
 
+![GoTodo logo](images/GOTODO.png)
+
 ![Go Version](https://img.shields.io/badge/go-1.18%2B-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-linux%20%7C%20macos%20%7C%20windows-lightgrey.svg)
 
