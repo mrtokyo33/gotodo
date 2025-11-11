@@ -1,4 +1,4 @@
-module github.com/mrtokyo33/todo
+module github.com/mrtokyo33/gotodo
 
 go 1.25.4
 
