@@ -2,42 +2,37 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 
+	"github.com/mrtokyo33/todo/pkg/errors"
+	"github.com/mrtokyo33/todo/pkg/utils"
 	"github.com/spf13/cobra"
 )
 
-// listCmd represents the list command
 var listCmd = &cobra.Command{
 	Use:   "list",
 	Short: "View all tasks",
 	Long:  `View all tasks`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if taskManager == nil {
-			fmt.Println("ERROR: Task Manager not initialized")
+			fmt.Println(utils.ErrorMessage(errors.ErrTaskManagerNotInit.Error()))
 			return
 		}
 
 		tasks, err := taskManager.ListTasks()
 
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Error loading tasks: %v\n", err)
+			fmt.Println(utils.ErrorMessage(fmt.Sprintf("error loading tasks: %v", err)))
 			return
 		}
 
 		if len(tasks) == 0 {
-			fmt.Println("\nYour to-do list is empty! Go add some tasks.")
+			fmt.Println(utils.EmptyListMessage())
 			return
 		}
 
-		fmt.Println("\nCurrent To-Do List:")
+		fmt.Println(utils.ListTitle())
 		for _, task := range tasks {
-			status := "[ ]"
-			if task.Completed {
-				status = "[x]"
-			}
-
-			fmt.Printf("%s %d: %s\n", status, task.ID, task.Title)
+			fmt.Println(utils.TaskLine(task))
 		}
 		fmt.Println()
 	},
@@ -45,5 +40,4 @@ var listCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(listCmd)
-
 }

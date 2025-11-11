@@ -2,9 +2,10 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 	"strconv"
 
+	"github.com/mrtokyo33/todo/pkg/errors"
+	"github.com/mrtokyo33/todo/pkg/utils"
 	"github.com/spf13/cobra"
 )
 
@@ -14,30 +15,29 @@ var rmCmd = &cobra.Command{
 	Long:  `Delete a task permanently`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if taskManager == nil {
-			fmt.Println("ERROR: Task Manager not initialized")
+			fmt.Println(utils.ErrorMessage(errors.ErrTaskManagerNotInit.Error()))
 			return
 		}
 
 		for _, argID := range args {
 			id, err := strconv.Atoi(argID)
 			if err != nil {
-				fmt.Fprintf(os.Stderr, "Invalid ID '%s'. Must be a number.\n", argID)
+				fmt.Println(utils.ErrorMessage(errors.InvalidIDError(argID).Error()))
 				continue
 			}
 
 			err = taskManager.RemoveTask(id)
 
 			if err != nil {
-				fmt.Fprintf(os.Stderr, "Error removing task %d: %v\n", id, err)
+				fmt.Println(utils.ErrorMessage(fmt.Sprintf("error removing task %d: %v", id, err)))
 				continue
 			}
 
-			fmt.Printf("Task %d removed successfully.\n", id)
+			fmt.Println(utils.TaskRemoved(id))
 		}
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(rmCmd)
-
 }

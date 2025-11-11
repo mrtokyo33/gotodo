@@ -2,10 +2,11 @@ package repositories
 
 import (
 	"encoding/json"
-	"errors"
+	stderrors "errors"
 	"os"
 	"path/filepath"
 
+	"github.com/mrtokyo33/todo/pkg/errors"
 	"github.com/mrtokyo33/todo/pkg/models"
 )
 
@@ -16,7 +17,7 @@ type JSONRepository struct {
 func NewJSONRepository(fileName string) *JSONRepository {
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
-		panic("ERROR: The user's home directory could not be found: " + err.Error())
+		panic(errors.HomeDirError(err))
 	}
 
 	filePath := filepath.Join(homeDir, fileName)
@@ -29,7 +30,7 @@ func NewJSONRepository(fileName string) *JSONRepository {
 func (j *JSONRepository) GetAll() ([]models.Task, error) {
 	data, err := os.ReadFile(j.filePath)
 
-	if errors.Is(err, os.ErrNotExist) || len(data) == 0 {
+	if stderrors.Is(err, os.ErrNotExist) || len(data) == 0 {
 		return []models.Task{}, nil
 	}
 
@@ -67,5 +68,5 @@ func (j *JSONRepository) GetByID(id int) (*models.Task, error) {
 		}
 	}
 
-	return nil, errors.New("task not founded")
+	return nil, errors.ErrTaskNotFound
 }

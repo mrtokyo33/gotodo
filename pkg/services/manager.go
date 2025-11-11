@@ -1,8 +1,7 @@
 package services
 
 import (
-	"fmt"
-
+	"github.com/mrtokyo33/todo/pkg/errors"
 	"github.com/mrtokyo33/todo/pkg/models"
 	"github.com/mrtokyo33/todo/pkg/repositories"
 )
@@ -65,7 +64,7 @@ func (m *TaskManager) SetTaskStatus(id int, status bool) error {
 	}
 
 	if !found {
-		return fmt.Errorf("task with ID: %d not found", id)
+		return errors.TaskNotFoundByID(id)
 	}
 
 	return m.Repo.SaveAll(tasks)
@@ -88,7 +87,7 @@ func (m *TaskManager) RemoveTask(id int) error {
 	}
 
 	if !removed {
-		return fmt.Errorf("task with ID: %d not found", id)
+		return errors.TaskNotFoundForRemoval(id)
 	}
 
 	return m.Repo.SaveAll(newTasks)
